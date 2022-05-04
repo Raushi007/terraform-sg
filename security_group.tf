@@ -84,7 +84,7 @@ resource "aws_security_group" "tfer--My-0020-First-0020-Template_sg-01bf0f8245df
     to_port     = "5432"
   }
   
-  {
+ ingress {
     cidr_blocks      = []
     description      = "this is security group changes"
     from_port        = 80
