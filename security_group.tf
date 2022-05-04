@@ -83,6 +83,20 @@ resource "aws_security_group" "tfer--My-0020-First-0020-Template_sg-01bf0f8245df
     self        = "false"
     to_port     = "5432"
   }
+  
+  {
+    cidr_blocks      = []
+    description      = "this is security group changes"
+    from_port        = 80
+    ipv6_cidr_blocks = []
+    prefix_list_ids  = []
+    protocol         = "tcp"
+    security_groups  = [
+    "sg-025b807a84b7b1f7f"
+            ]
+    self             = false
+    to_port          = 80
+        }
 
   ingress {
     cidr_blocks = ["42.105.107.23/32"]
