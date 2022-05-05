@@ -12,15 +12,6 @@ resource "aws_security_group" "tfer--My-0020-First-0020-Template_sg-01bf0f8245df
   ingress {
     cidr_blocks = ["3.108.217.22/32"]
     description = "allow port for jenkins integration"
-    from_port   = "5601"
-    protocol    = "tcp"
-    self        = "false"
-    to_port     = "5601"
-  }
-
-  ingress {
-    cidr_blocks = ["3.108.217.22/32"]
-    description = "allow port for jenkins integration"
     from_port   = "8080"
     protocol    = "tcp"
     self        = "false"
