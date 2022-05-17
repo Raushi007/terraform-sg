@@ -158,7 +158,7 @@ resource "aws_security_group" "tfer--default_sg-025b807a84b7b1f7f" {
 }
 
 resource "aws_security_group" "fs-onecard-creditcard-sg" {
-  Name  = "fs-onecard-creditcard-sg"
+  name  = "fs-onecard-creditcard-sg"
   description = "Allow TLS inbound traffic"
 
   egress {
