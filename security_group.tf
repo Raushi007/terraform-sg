@@ -156,3 +156,31 @@ resource "aws_security_group" "tfer--default_sg-025b807a84b7b1f7f" {
   name   = "default"
   vpc_id = "vpc-05635a703bbead1f2"
 }
+
+resource "aws_security_group" "fs-onecard-creditcard-sg" {
+  Name  = 'fs-onecard-creditcard-sg'
+  description = "Allow TLS inbound traffic"
+
+  egress {
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = "0"
+    protocol    = "-1"
+    self        = "false"
+    to_port     = "0"
+  }
+
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "this is security group allow 443 inbound rule"
+    from_port   = "443"
+    protocol    = "tcp"
+    self        = "false"
+    to_port     = "443"
+  }
+tags = {
+    Name = "allow_tls"
+   Department = "terraform_managed"
+  }
+
+  vpc_id = "vpc-05635a703bbead1f2" 
+}
