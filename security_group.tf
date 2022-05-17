@@ -125,6 +125,7 @@ resource "aws_security_group" "tfer--My-0020-First-0020-Template_sg-01bf0f8245df
 
   tags = {
     Name = "terraform-ref"
+    Department = "terraform_managed"
   }
 
   tags_all = {
