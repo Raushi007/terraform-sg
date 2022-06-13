@@ -6,7 +6,11 @@ pipeline {
 stages {
         stage('Welcome Step') {
             steps { 
-                echo 'Welcome to LambdaTest'
+               script{
+                def var1 = load "grafana_annotations.groovy"
+                  var1.annotateEventToGrafana(deploy)
+                 
+               }
             }
         }
     }
