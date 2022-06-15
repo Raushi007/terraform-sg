@@ -1,5 +1,3 @@
-
-//Annotate Event to Grafana
 def annotateEventToGrafana(event) {
     withCredentials([[$class: 'StringBinding', credentialsId: 'grafana_token', variable: 'grafanaToken']]) {
         grafanaToken = "${grafanaToken}"
@@ -19,7 +17,7 @@ def annotateEventToGrafana(event) {
   "tags": [ "${event}", "env:${ENVIRONMENT}", "application:${STACKER_APP}", "commit:${COMMIT_ID}" ]
 }
 EOF
-        curl -s -X POST https://grafana.example.com/api/annotations \
+        curl -s -X POST http://15.206.125.190:3000/api/annotations \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer ${grafanaToken}" \
             --data @EventAnnotation.txt
