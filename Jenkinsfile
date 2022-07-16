@@ -7,7 +7,8 @@ stages {
         stage('Welcome Step') {
             steps { 
                script{
-                annotateEventToGrafana("deploy")
+                def var1 = load "grafana_annotations.groovy"
+                  var1.annotateEventToGrafana(deploy)
                  
                }
             }
