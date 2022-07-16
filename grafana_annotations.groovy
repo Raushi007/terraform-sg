@@ -1,5 +1,6 @@
+//Annotate Event to Grafana
 def annotateEventToGrafana(event) {
-    withCredentials([[$class: 'StringBinding', credentialsId: 'grafana_token', variable: 'grafanaToken']]) {
+    withCredentials([[$class: 'StringBinding', credentialsId: 'grafana-today', variable: 'grafanaToken']]) {
         grafanaToken = "${grafanaToken}"
 
         if (event == 'deploy') {
@@ -8,20 +9,25 @@ def annotateEventToGrafana(event) {
             listener_type = "Live"
         }
 
-        cat << EOF > EventAnnotation.txt
+sh"""
+  cat << EOF > EventAnnotation.txt
+
 {
-  "text": "Deployed service 'backend-service'\n
+  "text": "${event.capitalize()} commit fakeCommitId to fakeApp fakeregion fakeEnv fakeListenerType Listener\\n\\n
     <a href=\\"${GITHUB_URL}/commit/${LiveColorCommitId}\\">LiveListener: (${LiveColor}) (${LiveColorCommitId})</a>\n
     <a href=\\"${GITHUB_URL}/commit/${COMMIT_ID}\\">TestListener: (${testColor}) (${COMMIT_ID})</a>\n
     <a href=\\"${BUILD_URL}/console\\">Jenkins #${BUILD_NUMBER} (DEPLOY Logs)</a>",
-  "tags": [ "${event}", "env:${ENVIRONMENT}", "application:${STACKER_APP}", "commit:${COMMIT_ID}" ]
+  "tags": [ "${event}", "env:fakeEnv", "application:fakeApp", "commit:fakeCommitId" ]
 }
+
 EOF
-        curl -s -X POST http://15.206.125.190:3000/api/annotations \
+
+ curl -s -X POST http://43.204.130.109:3000/api/annotations \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer ${grafanaToken}" \
             --data @EventAnnotation.txt
         
         """
+
     }
 }
