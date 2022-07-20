@@ -11,7 +11,7 @@ stages {
         stage('Welcome Step') {
             steps { 
                script{
-                   sh 'echo $env.GIT_BRANCH'
+                   sh echo "$env.GIT_COMMIT"
                    sh 'echo GIT_URL %GIT_URL%'
                   // Checkout the repository and save the resulting metadata
       def scmVars = checkout([
