@@ -1,7 +1,7 @@
 @Library('lpl-library')_
 
 def utils = new annotateEventToGrafana()
-BUILD_USER = getBuildUser()
+
 
 pipeline {
    agent {
@@ -13,7 +13,7 @@ stages {
             steps { 
                script{
                 utils.annotateEventToGrafana("deploy")
-                 BUILD_USER = getBuildUser()
+                 
                }
             }
         }
