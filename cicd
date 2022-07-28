@@ -4,9 +4,7 @@ def utils = new annotateEventToGrafana()
 
 
 pipeline {
-   agent {
-        label 'master'
-    } 
+   agent any
     
 stages {
         stage('Welcome Step') {
