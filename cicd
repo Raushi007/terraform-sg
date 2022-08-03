@@ -9,7 +9,7 @@ pipeline {
 stages {
         stage('Welcome Step') {
             steps { 
-               scrip{
+               script{
                 utils.annotateEventToGrafana("deploy")
                  
                }
