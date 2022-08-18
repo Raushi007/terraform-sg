@@ -5,7 +5,9 @@ def utils = new annotateEventToGrafana()
 
 pipeline {
    agent any
-   
+   environment {
+    AWS_DEFAULT_REGION="${params.REGION}"
+  }  
     
 stages {
 
